@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 public class Main {
     public static void main(String[] args) {
         try {
-            //Añadimso os productos
+            //Añadimso  os productos
             Metodos.insireProduto("p1","parafusos",3, "27/12/2020");
             Metodos.insireProduto("p2","cravos",4, "06/04/2020");
             Metodos.insireProduto("p3","tachas",6, "03/07/2020");
