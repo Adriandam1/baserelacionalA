@@ -6,10 +6,11 @@ public class Metodos {
 
     // Metodo para establecer conexión con la base de datos
     /**
-     * metodo que establece la conexion predeterminada a nuestra base de datos
-     * conn es el objeto de nuestra conexion
-     * en caso de no poder conectarse nos saldra un mensaje de erro
-     **/
+     * Establece la conexión con la base de datos PostgreSQL.
+     *
+     * @return un objeto Connection que representa la conexión con la base de datos.
+     * Si no se puede conectar, se muestra un mensaje de error y se devuelve null.
+     */
     public static Connection conexion() {
         Connection conn = null;
         try {
@@ -30,11 +31,12 @@ public class Metodos {
     }
 
     /**
-     * Metodo para insertar un producto en la tabla
-     * @param codigo do producto
-     * @param descricion nombre producto
-     * @param prezo do producto
-     * @param dataCaducidade do producto
+     * Inserta un nuevo producto en la tabla 'produtos'.
+     *
+     * @param codigo         el código del producto.
+     * @param descricion     la descripción del producto.
+     * @param prezo         el precio del producto.
+     * @param dataCaducidade la fecha de caducidad del producto en formato "dd/MM/yyyy".
      */
     public static void insireProduto(String codigo, String descricion, int prezo, String dataCaducidade) {
         // convertimos el string que pasamos a date, mediante la variable fecha:
@@ -60,6 +62,9 @@ public class Metodos {
     }
 
     //Metodo para listar todos los productos
+    /**
+     * Lista todos los productos de la tabla 'produtos'.
+     */
     public static void listaProdutos() {
         String sql = "SELECT * FROM produtos";
         try (Connection conn = conexion();
@@ -79,6 +84,11 @@ public class Metodos {
     }
 
     // Metodo para listar un producto por su código
+    /**
+     * Lista un producto específico según su código.
+     *
+     * @param codigo el código del producto a buscar.
+     */
     public static void listaProdutoPorCodigo(String codigo) {
         String sql = "SELECT * FROM produtos WHERE codigo = ?";
         try (Connection conn = conexion();
@@ -101,6 +111,12 @@ public class Metodos {
     }
 
     // Metodo para actualizar el precio de un producto
+    /**
+     * Actualiza el precio de un producto especificado por su código.
+     *
+     * @param codigo     el código del producto a actualizar.
+     * @param novoPrezo  el nuevo precio que se asignará al producto.
+     */
     public static void actualizaPre(String codigo, int novoPrezo) {
         String sql = "UPDATE produtos SET prezo = ? WHERE codigo = ?";
         try (Connection conn = conexion();
@@ -121,6 +137,11 @@ public class Metodos {
     }
 
     // Metodo para eliminar un producto por su código
+    /**
+     * Elimina un producto especificado por su código.
+     *
+     * @param codigo el código del producto a eliminar.
+     */
     public static void eliminaProduto(String codigo) {
         String sql = "DELETE FROM produtos WHERE codigo = ?";
         try (Connection conn = conexion();
